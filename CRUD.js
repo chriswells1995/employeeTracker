@@ -15,7 +15,7 @@ function createDepartment(connection, departmentName) {
       })
       .then(function(result){
     //  console.log(result)
-        console.log(result.affectedRows + " depos inserted!\n")
+        console.log(result.affectedRows + " depo(s) inserted!\n")
         // Call updateProduct AFTER the INSERT completes
         // updateProduct();
 
@@ -46,7 +46,6 @@ function createDepartment(connection, departmentName) {
             console.log("Press the up or down arrow keys to continue")
 
             
-            console.log(result[1].department_name)
     //   connection.end();
         })
         .catch(function(error){
@@ -94,7 +93,7 @@ function createDepartment(connection, departmentName) {
           )
           .then(function(result){
         //  console.log(result)
-            console.log(result.affectedRows + " depos inserted!\n")
+            console.log(result.affectedRows + " role(s) inserted!\n")
             // Call updateProduct AFTER the INSERT completes
             // updateProduct();
     
@@ -134,9 +133,64 @@ function createDepartment(connection, departmentName) {
     
         };
     // create employee
+    function createEmployee(connection, first_name, last_name, role_id, manager_id) {
+        console.log("Inserting a new role...\n");
+        // we're used to using values, but now we have SET and a ? placeholder, prevent SQL objection, prevent hackers from hacking into our SQL queries
+        // the first arg is the INSERT
+        // The second arg is the values
+      
+         connection.query(
+          "INSERT INTO employees SET ?",
+          {
+            first_name: first_name,
+            last_name: last_name,
+            role_id: role_id,
+            manager_id: manager_id
+          },
+          )
+          .then(function(result){
+        //  console.log(result)
+            console.log(result.affectedRows + " employee(s) inserted!\n")
+            // Call updateProduct AFTER the INSERT completes
+            // updateProduct();
+    
+            // .catch (function(error){
+    
+            //     console.log(error)
+            // }) 
+            console.log('\n')
+            console.log('\n')
 
+            console.log("Press the up or down arrow keys to continue")
+    
+          })
+          return;
+     
+      }
     // read employee
-
+    function readEmployees(connection) {
+        console.log("Selecting all roles...\n");
+      // use connectionquery to execute a SQL query
+      // use a select statement to return all cols from the product table
+      
+        connection.query("SELECT * FROM employees")
+            .then(function(result){
+                console.log('\n')      
+          console.table(result);
+                console.log('\n')
+                console.log('\n')
+    
+                console.log("Press the up or down arrow keys to continue")
+        //   connection.end();
+            })
+            .catch(function(error){
+    
+                console.log(error)
+            })
+     
+            return;
+    
+        };
     // update employee role?
 
 module.exports ={
@@ -144,5 +198,7 @@ module.exports ={
     readDepartments: readDepartmnets,
     readRoles: readRoles,
     createRole: createRole,
+    readEmployees: readEmployees,
+    createEmployee: createEmployee
     // defineDepartmnetsArray: defineDepartmnetsArray
     }   

@@ -44,7 +44,10 @@ function firstQuestion(){
         "Add a department", 
         "View all departments",
         "Add a role",
-        "View all roles"
+        "View all roles",
+        "Add an employee",
+        "View all employees",
+        "Update Employee Role"
         ],
     name: "choice"
     }
@@ -70,6 +73,16 @@ function firstQuestion(){
                 case "View all roles":
                     CRUD.readRoles(connection);
                     firstQuestion();
+                    break
+                case "Add an employee":
+                    addEmployeeQuestion();
+                    break
+                case "View all employees":
+                    CRUD.readEmployees(connection);  
+                    firstQuestion()                  
+                    break
+                case "Update Employee Role":
+
                     break
                 // maybe add a default
             }            
@@ -127,7 +140,6 @@ function addDepoQuestion(){
 
 
 
-// prompt function for view roles
 
 // prompt function for add roles
 function addRoleQuestion(){
@@ -165,10 +177,90 @@ function addRoleQuestion(){
     //     console.log(error)
     // })
 }
-// prompt function for view employees
+
+// inquire prompt for department asking department name
+function addDepoQuestion(){
+
+    inquirer
+    .prompt([
+{
+    type: "input",
+    message: "What is the name of the department? ",
+    name: "department_name"
+}
+    ])
+    // use .then promise and feed in the parameters of name, id, email, role, officeNumber, gitHub, and school
+    .then(function (answers) {
+        console.log(answers)
+        CRUD.createDepartment(connection, answers.department_name)
+        
+        console.log("This part works!")
+        firstQuestion();
+
+
+    })
+    // .catch(function(error){
+
+    //     console.log(error)
+    // })
+}
+
+
+
 
 // prompt function for add employees
 
+function addEmployeeQuestion(){
+    // var depoArray=CRUD.defineDepartmnetsArray(connection);
+
+    inquirer
+    .prompt([
+{
+    type: "input",
+    message: "Enter the employee's first name",
+    name: "first_name"
+},
+{
+    type: "input",
+    message: "Enter the employee's last name",
+    name: "last_name"
+},
+{
+    type: "list",
+    message: "Is the employee a manager?",
+    choices: ["Yes", "No"],
+    name: "manager_check"
+},
+
+
+{    
+    type: "input",
+    message: "Enter the Role ID number",
+    name: "role_id"
+
+}
+    ])
+    // use .then promise
+    .then(function (answers) {
+        console.log(answers)
+        if (answers.manager_check==="Yes")
+        {
+            CRUD.createEmployee(connection, answers.first_name, answers.last_name, answers.role_id, 1)
+        }
+        else{
+            CRUD.createEmployee(connection, answers.first_name, answers.last_name, answers.role_id, null)
+
+        }
+        
+        firstQuestion();
+
+
+    })
+    // .catch(function(error){
+
+    //     console.log(error)
+    // })
+}
 
 // *prompt function for updating employee roles
 

@@ -98,7 +98,7 @@ INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Diana", "Prince", 3, null);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
-VALUES ("Steve", "Rogers", 4, null);
+VALUES ("Steve", "Rogers", 4, 1);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Tony", "Stark", 5, null);
@@ -107,7 +107,7 @@ INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Bruce", "Banner", 6, null);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
-VALUES ("Scott", "Summers", 7, null);
+VALUES ("Scott", "Summers", 7, 1);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Logan", "Howlette", 8, null);
@@ -116,7 +116,7 @@ INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Kurt", "Wagner", 9, null);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
-VALUES ("Dick", "Grayson", 10, null);
+VALUES ("Dick", "Grayson", 10, 1);
 
 INSERT INTO employees (first_name, last_name, role_id, manager_id)
 VALUES ("Rachel", "Roth", 11, null);
