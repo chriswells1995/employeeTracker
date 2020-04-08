@@ -42,7 +42,9 @@ function firstQuestion(){
     choices: 
         [
         "Add a department", 
-        "View all departments"
+        "View all departments",
+        "Add a role",
+        "View all roles"
         ],
     name: "choice"
     }
@@ -58,7 +60,16 @@ function firstQuestion(){
                     break
 
                 case "View all departments":
-                    viewDepoQuestion();
+                    CRUD.readDepartments(connection)
+                    firstQuestion();
+                    break
+                
+                case "Add a role":
+                        //create role
+                     break
+                case "View all roles":
+                    CRUD.readRoles(connection);
+                    firstQuestion();
                     break
                 // maybe add a default
             }            
@@ -113,6 +124,19 @@ function addDepoQuestion(){
     //     console.log(error)
     // })
 }
+
+
+
+// prompt function for view roles
+
+// prompt function for add roles
+
+// prompt function for view employees
+
+// prompt function for add employees
+
+
+// *prompt function for updating employee roles
 
 
 
