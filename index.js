@@ -65,7 +65,7 @@ function firstQuestion(){
                     break
                 
                 case "Add a role":
-                        //create role
+                    addRoleQuestion();
                      break
                 case "View all roles":
                     CRUD.readRoles(connection);
@@ -130,7 +130,41 @@ function addDepoQuestion(){
 // prompt function for view roles
 
 // prompt function for add roles
+function addRoleQuestion(){
+    // var depoArray=CRUD.defineDepartmnetsArray(connection);
 
+    inquirer
+    .prompt([
+{
+    type: "input",
+    message: "Enter the title of the role",
+    name: "role_title"
+},
+{
+    type: "input",
+    message: "Enter the salary of the role",
+    name: "role_salary"
+},
+{
+    type: "input",
+    message: "Enter the department number of the role",
+    name: "depo_id"
+}
+    ])
+    // use .then promise
+    .then(function (answers) {
+        console.log(answers)
+        CRUD.createRole(connection, answers.role_title, answers.role_salary, answers.depo_id)
+        
+        firstQuestion();
+
+
+    })
+    // .catch(function(error){
+
+    //     console.log(error)
+    // })
+}
 // prompt function for view employees
 
 // prompt function for add employees
