@@ -191,7 +191,36 @@ function createDepartment(connection, departmentName) {
             return;
     
         };
+
     // update employee role?
+    function updateEmployeeRole(connection, role_id, id) {
+        console.log("Updating employee role...\n");
+        var query = connection.query(
+          // we have two ?s here
+          // quanity replaces the first
+          // flavor replaces the second
+          // don't want to use template literals here
+          "UPDATE employees SET ? WHERE ?",
+          [
+            {
+              role_id: role_id
+            },
+            {
+              id: id
+            }
+          ],
+          function(err, res) {
+            if (err) throw err;
+            console.log(res.affectedRows + " products updated!\n");
+            // Call deleteProduct AFTER the UPDATE completes
+            // deleteProduct();
+          }
+        );
+      
+        // logs the actual query being run
+        // console.log(query.sql);
+      }
+
 
 module.exports ={
     createDepartment: createDepartment,
@@ -199,6 +228,7 @@ module.exports ={
     readRoles: readRoles,
     createRole: createRole,
     readEmployees: readEmployees,
-    createEmployee: createEmployee
+    createEmployee: createEmployee,
+    updateEmployeeRole: updateEmployeeRole
     // defineDepartmnetsArray: defineDepartmnetsArray
     }   

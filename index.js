@@ -82,7 +82,7 @@ function firstQuestion(){
                     firstQuestion()                  
                     break
                 case "Update Employee Role":
-
+                    updateEmployeeRoleQuestion();
                     break
                 // maybe add a default
             }            
@@ -262,6 +262,39 @@ function addEmployeeQuestion(){
     // })
 }
 
+
+
+function updateEmployeeRoleQuestion(){
+
+    inquirer
+    .prompt([
+{
+    type: "input",
+    message: "Select which Employee you'd like to make updates to (enter their ID number)",
+    name: "id"
+},
+{
+    type: "input",
+    message: "Enter the role you'd like the employeee to have now (enter the role ID number)",
+    name: "role_id"
+}
+
+    ])
+    // use .then promise
+    .then(function (answers) {
+
+            CRUD.updateEmployeeRole(connection, answers.role_id, answers.id)
+
+        
+        firstQuestion();
+
+
+    })
+    // .catch(function(error){
+
+    //     console.log(error)
+    // })
+}
 // *prompt function for updating employee roles
 
 
