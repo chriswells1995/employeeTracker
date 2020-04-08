@@ -9,6 +9,30 @@ const connection=require("./connection")
 
 console.log("Test")
 
+
+inquirer
+.prompt([
+{
+type: "list",
+message: "Would you like to start ",
+choices: ["Yes", "No"],
+name: "starting"
+}
+])
+// use .then promise and feed in the parameters of name, id, email, role, officeNumber, gitHub, and school
+.then(function (answers) {
+
+    if (answers.starting==="Yes"){
+                firstQuestion();
+    }
+
+})
+.catch(function(error){
+
+    console.log(error)
+})
+
+
 function firstQuestion(){
     inquirer
     .prompt([
@@ -38,6 +62,16 @@ function firstQuestion(){
                     break
                 // maybe add a default
             }            
+
+
+            // if (answers.choice === "Add a department"){
+            //     addDepoQuestion()
+            // }
+            // if (answers.choice === "View all departments"){
+            //     // viewDepoQuestion()
+            //     CRUD.readDepartments(connection)
+            //     firstQuestion();
+            // }
     
     
         })
@@ -45,6 +79,8 @@ function firstQuestion(){
     
             console.log(error)
         })
+
+ 
 }
 
 
@@ -72,44 +108,47 @@ function addDepoQuestion(){
 
 
     })
-    .catch(function(error){
+    // .catch(function(error){
 
-        console.log(error)
-    })
+    //     console.log(error)
+    // })
 }
 
 
 
 
-    function viewDepoQuestion(){
+    // function viewDepoQuestion(){
 
-        inquirer
-        .prompt([
-    {
-        type: "list",
-        message: "Would you like to view the current departments? ",
-        choices: ["Yes", "No"],
-        name: "department_view"
-    }
-        ])
-        // use .then promise and feed in the parameters of name, id, email, role, officeNumber, gitHub, and school
-        .then(function (answers) {
+    //     inquirer
+    //     .prompt([
+    // {
+    //     type: "list",
+    //     message: "Would you like to view the current departments? ",
+    //     choices: ["Yes", "No"],
+    //     name: "department_view"
+    // }
+    //     ])
+    //     // use .then promise and feed in the parameters of name, id, email, role, officeNumber, gitHub, and school
+    //     .then(function (answers) {
 
-            if (answers.department_view==="Yes"){
-                           CRUD.readDepartments(connection)
-            }
-            console.log("This part also works");
-            firstQuestion();
-        })
-        .catch(function(error){
+    //         if (answers.department_view==="Yes"){
+    //                        CRUD.readDepartments(connection)
+    //         }
+    //         console.log("This part also works");
+    //     })
+    //     .then(function(){
+    //         firstQuestion();
 
-            console.log(error)
-        })
+    //     })
+    //     .catch(function(error){
 
-    }
+    //         console.log(error)
+    //     })
+
+    // }
 
 
-firstQuestion();
+
 
 // const questions = [
 

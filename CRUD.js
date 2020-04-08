@@ -18,13 +18,15 @@ function createDepartment(connection, departmentName) {
         console.log(result.affectedRows + " depos inserted!\n")
         // Call updateProduct AFTER the INSERT completes
         // updateProduct();
-        .catch (function(error){
 
-            console.log(error)
-        }) 
+        // .catch (function(error){
+
+        //     console.log(error)
+        // }) 
   
 
       })
+      return;
  
   }
 
@@ -38,14 +40,14 @@ function createDepartment(connection, departmentName) {
         .then(function(result){
 
       console.table(result);
-      connection.end();
+    //   connection.end();
         })
         .catch(function(error){
 
             console.log(error)
         })
  
-
+        return;
 
     };
 
