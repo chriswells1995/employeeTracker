@@ -38,4 +38,7 @@ INSERT INTO departments (department_name)
 VALUES ("Avengers");
 
 INSERT INTO departments (department_name)
-VALUES ("Justice League");
+VALUES ("X Men");
+
+INSERT INTO departments (department_name)
+VALUES ("Teen Titans");

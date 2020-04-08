@@ -15,10 +15,13 @@ function createDepartment(connection, departmentName) {
       })
       .then(function(result){
      console.log(result)
-        console.log(result.affectedRows + " product inserted!\n");
+        console.log(result.affectedRows + " depos inserted!\n")
         // Call updateProduct AFTER the INSERT completes
         // updateProduct();
- 
+        .catch (function(error){
+
+            console.log(error)
+        }) 
   
 
       })
@@ -26,20 +29,28 @@ function createDepartment(connection, departmentName) {
   }
 
 
-  function readDepartmnets() {
+  function readDepartmnets(connection) {
     console.log("Selecting all depos...\n");
   // use connectionquery to execute a SQL query
   // use a select statement to return all cols from the product table
   
-    connection.query("SELECT * FROM departments", function(err, res) {
-      if (err) throw err;
-      // Log all results of the SELECT statement
-      console.log(res);
+    connection.query("SELECT * FROM departments")
+        .then(function(result){
+
+      console.table(result);
       connection.end();
-    });
-  }
+        })
+        .catch(function(error){
+
+            console.log(error)
+        })
+ 
+
+
+    };
 
 
 module.exports ={
-    createDepartment: createDepartment
+    createDepartment: createDepartment,
+    readDepartments: readDepartmnets
     }   

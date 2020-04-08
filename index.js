@@ -9,8 +9,50 @@ const connection=require("./connection")
 
 console.log("Test")
 
+function firstQuestion(){
+    inquirer
+    .prompt([
+    {
+    type: "list",
+    message: "What do you want to do? ",
+    choices: 
+        [
+        "Add a department", 
+        "View all departments"
+        ],
+    name: "choice"
+    }
+        ])
+        .then(function (answers) {
+
+            
+            switch (answers.choice) {
+
+
+                case "Add a department":
+                    addDepoQuestion();
+                    break
+
+                case "View all departments":
+                    viewDepoQuestion();
+                    break
+                // maybe add a default
+            }            
+    
+    
+        })
+        .catch(function(error){
+    
+            console.log(error)
+        })
+}
+
+
+
+
+
 // inquire prompt for department asking department name
-function firstDepoQuestion(){
+function addDepoQuestion(){
 
     inquirer
     .prompt([
@@ -25,7 +67,8 @@ function firstDepoQuestion(){
         console.log(answers)
         CRUD.createDepartment(connection, answers.department_name)
         
-
+        console.log("This part works!")
+        firstQuestion();
 
 
     })
@@ -53,8 +96,10 @@ function firstDepoQuestion(){
         .then(function (answers) {
 
             if (answers.department_view==="Yes"){
-                           CRUD.createDepartment(connection, answers.department_name)
+                           CRUD.readDepartments(connection)
             }
+            console.log("This part also works");
+            firstQuestion();
         })
         .catch(function(error){
 
@@ -64,8 +109,7 @@ function firstDepoQuestion(){
     }
 
 
-viewDepoQuestion();
-
+firstQuestion();
 
 // const questions = [
 
